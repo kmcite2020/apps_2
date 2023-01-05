@@ -3,6 +3,7 @@
 import "dart:convert";
 
 import 'package:dashboard/apps/opthalmologyApp/main.dart';
+import 'package:dashboard/apps/quizMCQsManagerApp/main.dart';
 import "package:dashboard/core/authentication/login/login.dart";
 import "package:dashboard/main.dart";
 import "package:flutter/material.dart";
@@ -19,6 +20,7 @@ import "../apps/googleFontsViewerApp/googleFontsViewerApp.dart";
 import "../apps/hmisApp/hmisApp.dart";
 import "../apps/hospitalApp/hospitalApp.dart";
 import "../apps/idealApp/ui/dashboard.dart";
+import '../apps/opthalmologyApp/app.dart';
 import "authentication/authentication.dart";
 import "../apps/prayersApp/prayerApp.dart";
 import "../apps/prescriptionsApp/prescriptionsApp.dart";
@@ -64,7 +66,7 @@ Widget get runSelectedApp {
     case Apps.timerApp:
       return TimerApp();
     case Apps.quizManagerApp:
-      return Dashboard();
+      return MCQsManager();
     case Apps.prayersApp:
       return PrayersApp();
     case Apps.commonSymptomsApp:
