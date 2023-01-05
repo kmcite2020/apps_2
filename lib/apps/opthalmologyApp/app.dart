@@ -5,8 +5,8 @@ import '../../core/reactiveModels.dart';
 import 'riverpod.dart';
 import 'test_screen.dart';
 
-class OpthalomologyMCQsApp extends ReactiveStatelessWidget {
-  const OpthalomologyMCQsApp({super.key});
+class OpthalmologyMCQsApp extends ReactiveStatelessWidget {
+  const OpthalmologyMCQsApp({super.key});
 
   @override
   Widget build(BuildContext context) {

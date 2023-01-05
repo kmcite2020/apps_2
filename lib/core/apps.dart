@@ -3,7 +3,7 @@
 import "dart:convert";
 
 import 'package:dashboard/apps/opthalmologyApp/main.dart';
-import 'package:dashboard/apps/quizMCQsManagerApp/main.dart';
+import 'package:dashboard/apps/opthalmologyMCQsManagerApp/main.dart';
 import "package:dashboard/core/authentication/login/login.dart";
 import "package:dashboard/main.dart";
 import "package:flutter/material.dart";
@@ -46,7 +46,7 @@ enum Apps {
   prayersApp("Prayers", MdiIcons.handBackLeft),
   prescriptionsApp("Prescriptions", MdiIcons.elevatorDown),
   opthalmologyApp("Opthalomology MCQs", MdiIcons.chatSleepOutline),
-  quizManagerApp("Quiz Manager - for Quiz App", MdiIcons.chatQuestion),
+  mcqsManagerApp("Questions for Opthalmology", MdiIcons.chatQuestion),
   settingsApp("Settings", Icons.settings),
   taskManagerApp("Task Manager", MdiIcons.professionalHexagon),
   timerApp("Timer", MdiIcons.timelapse),
@@ -62,10 +62,10 @@ Widget get runSelectedApp {
     case Apps.idealApp:
       return Dashboard();
     case Apps.opthalmologyApp:
-      return OpthalomologyMCQsApp();
+      return OpthalmologyMCQsApp();
     case Apps.timerApp:
       return TimerApp();
-    case Apps.quizManagerApp:
+    case Apps.mcqsManagerApp:
       return MCQsManager();
     case Apps.prayersApp:
       return PrayersApp();

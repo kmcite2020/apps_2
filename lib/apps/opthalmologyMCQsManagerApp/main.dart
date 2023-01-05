@@ -3,11 +3,9 @@
 import 'package:dashboard/apps/opthalmologyApp/riverpod.dart';
 import 'package:dashboard/core/reactiveModels.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:states_rebuilder/states_rebuilder.dart';
 
-class MCQsManager extends StatelessWidget {
+class MCQsManager extends ReactiveStatelessWidget {
   const MCQsManager({super.key});
 
   @override
@@ -33,8 +31,10 @@ class MCQsManager extends StatelessWidget {
                 padding: EdgeInsets.all(padding),
                 child: TextField(
                   controller: questionController.controller,
+                  focusNode: questionController.focusNode,
                   decoration: InputDecoration(
                     labelText: "Question",
+                    errorText: questionController.error,
                   ),
                 ),
               ),
@@ -133,6 +133,7 @@ class MCQsManager extends StatelessWidget {
 }
 
 final addQuestionForm = RM.injectForm(
+  autovalidateMode: AutovalidateMode.always,
   submit: () async {
     await Future.delayed(1.seconds);
     questionsRM.state = [
@@ -149,7 +150,17 @@ final addQuestionForm = RM.injectForm(
 
 final questionController = RM.injectTextEditing(
   validators: [
-    (text) {},
+    (text) {
+      if (!text!.contains('?')) {
+        return "Should contain question";
+      } else {
+        if (text.length < 20) {
+          return "Should contain at least 20 characters.";
+        } else {
+          return null;
+        }
+      }
+    },
   ],
 );
 final chapterField = RM.injectFormField<Chapter>(Chapter.catarct);

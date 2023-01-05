@@ -256,4 +256,4 @@ final currentWorthRM = RM.inject(
   },
   dependsOn: DependsOn({productsRM}),
 );
-String get currentWorth => currentWorthRM.state();
+String get currentWorth => currentWorthRM.state;

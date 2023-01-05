@@ -5,7 +5,14 @@ import 'dart:convert';
 import 'package:equatable/equatable.dart';
 import 'package:states_rebuilder/states_rebuilder.dart';
 
-final questionsRM = RM.inject(() => []);
+final questionsRM = RM.inject<List<Question>>(
+  () => <Question>[],
+  persist: () => PersistState(
+    key: 'questions',
+    toJson: (s) => Question.toListJson(s),
+    fromJson: (json) => Question.fromListJson(json),
+  ),
+);
 
 int getNumberOfQuestionsOfChapters(Chapter chapter) {
   return questions.where(
@@ -76,7 +83,7 @@ class Question extends Equatable {
     return Question(
       questionName: map['questionName'] as String,
       chapter: Chapter.values[map['chapter']],
-      options: List<String>.from((map['options'] as List<String>)),
+      options: List<String>.from((map['options'])),
       correctOptionIndex: map['correctOptionIndex'] as int,
     );
   }
@@ -87,6 +94,15 @@ class Question extends Equatable {
 
   @override
   bool get stringify => true;
+  static List<Question> fromListJson(String source) {
+    final List result = json.decode(source) as List;
+    return result.map((e) => Question.fromJson(e)).toList();
+  }
+
+  static String toListJson(List<Question> counters) {
+    final List result = counters.map((e) => e.toJson()).toList();
+    return json.encode(result);
+  }
 }
 
 enum Chapter {
@@ -105,29 +121,5 @@ enum Chapter {
   int get numberOfQuestions => getNumberOfQuestionsOfChapters(Chapter.values[index]);
 }
 
-List<Question> questions = [
-  const Question(
-    questionName: 'How are you?',
-    chapter: Chapter.orbit,
-    options: ["not fine", "fine but not enough", "you sure."],
-    correctOptionIndex: 2,
-  ),
-  const Question(
-    questionName: 'q2',
-    chapter: Chapter.glaucoma,
-    options: ["incoroptionArectOptions", "aoptionA", "optionAass"],
-    correctOptionIndex: 0,
-  ),
-  const Question(
-    questionName: 'q3',
-    chapter: Chapter.orbit,
-    options: ["ioptionAncorrectOptions", "optionAZZZa", "asoptionAs"],
-    correctOptionIndex: 1,
-  ),
-  const Question(
-    questionName: 'q4',
-    chapter: Chapter.neurology,
-    options: ["incorrectoptionASJJSOptions", "aasas", "aasjdsjss"],
-    correctOptionIndex: 3,
-  ),
-];
+List<Question> get questions => questionsRM.state;
+set question(value) => questionsRM.state = value;

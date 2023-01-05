@@ -71,18 +71,6 @@ final _borderRadius = RM.inject<double>(
   persist: () => PersistState(key: "borderRadius"),
 );
 
-// final themeRM = RM.inject<ThemeData>(
-//   () => lightThemeData,
-//   dependsOn: DependsOn(dependers),
-// );
-// ThemeData get theme => themeRM.state;
-
-// final darkThemeRM = RM.inject(
-//   () => darkThemeData,
-//   dependsOn: DependsOn(dependers),
-// );
-// ThemeData get darkTheme => darkThemeRM.state;
-
 ThemeMode get themeMode => _themeMode.state;
 set themeMode(value) => _themeMode.state = value;
 List<ThemeMode> get themeModes => ThemeMode.values;

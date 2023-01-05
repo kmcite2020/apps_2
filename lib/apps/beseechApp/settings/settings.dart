@@ -11,10 +11,6 @@ import '../../../core/reactiveModels.dart';
 import '../../../core/themes/themes.dart';
 import '../beseechApp.dart';
 import '../core.dart';
-import 'about.dart';
-import 'delete_all.dart';
-import 'feedback.dart';
-import 'help.dart';
 import 'user_information.dart';
 
 class Settings extends ReactiveStatelessWidget {
@@ -31,8 +27,7 @@ class Settings extends ReactiveStatelessWidget {
             IconButton(
               tooltip: 'homepage',
               onPressed: () {
-                Navigator.pop(context);
-                // Initialize.open(context);
+                currentApp = null;
               },
               icon: Icon(Icons.close),
             ),
@@ -58,10 +53,6 @@ class Settings extends ReactiveStatelessWidget {
               ),
             ),
           ),
-          FeedbackTile(),
-          Help(),
-          About(),
-          DeleteAll(),
         ],
       ),
     );

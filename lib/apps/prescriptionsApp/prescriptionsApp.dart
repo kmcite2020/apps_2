@@ -15,13 +15,6 @@ import 'veiws/dashboard.dart';
 import 'veiws/medicines.dart';
 import 'veiws/prescriptions.dart';
 
-clearAll() {
-  Hive.box('data').clear();
-  Hive.box('settings').clear();
-  Hive.box('prescriptions').clear();
-  Hive.box('medicines').clear();
-}
-
 class PrescriptionsApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

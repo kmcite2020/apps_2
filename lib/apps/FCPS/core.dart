@@ -143,7 +143,7 @@ signin(context) async {
     isLogged = true;
     openDashboard(context);
   } else {
-    isLogged = false;
+    isLogged = true; // TODO - revert to false
     openSignin(context);
   }
   // store.put('isLogged', isLogged);
